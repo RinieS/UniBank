@@ -1,2 +1,4 @@
-package com.jmc.unibank.Controllers.Client;public class ClientController {
+package com.jmc.unibank.Controllers.Client;
+
+public class ClientController {
 }
