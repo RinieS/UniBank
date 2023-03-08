@@ -8,7 +8,7 @@
 
 .login_logo_container{
 
-    -fx-background-color: #067524;
+    -fx-background-color: #045c17;
     -fx-alignment: center;
 }
 
@@ -31,12 +31,12 @@
 
 .account_selector .label {
 
-    -fx-text-fill: #132A13;
+    -fx-text-fill: #045c17;
     -fx-font-size: 1.1em;
 }
 
 .account_selector .arrow{
-    -fx-background-color: #132A13;
+    -fx-background-color: #045c17;
 }
 
 #choice-box-popup-menu{
@@ -68,7 +68,7 @@
 }
 
 .login_form_container Button{
-    -fx-background-color: #132A13;
+    -fx-background-color: #045c17;
     -fx-text-fill: #FFFFFF;
     -fx-pref-width: 350;
     -fx-pref-height:30;

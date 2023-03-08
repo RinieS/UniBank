@@ -22,7 +22,7 @@
 }
 
 .title_container FontAwesomeIconView {
-    -fx-fill: #132A13;
+    -fx-fill: #045c17;
 
 }
 
@@ -45,7 +45,7 @@
     -fx-pref-width: 115;
     -fx-pref-height: 40;
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #132A13;
+    -fx-text-fill: #045c17;
     -fx-alignment: center_left;
     -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5,0,0,6);
 }
@@ -56,14 +56,14 @@
 
 .menu_container Button FontAwesomeIconView {
 
-    -fx-fill: #132A13;
+    -fx-fill: #045c17;
 }
 
 .alt_menu_btn {
 
     -fx-pref-width: 115;
     -fx-pref-height:40;
-    -fx-background-color: #132A13;
+    -fx-background-color: #045c17;
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 1.1em;
     -fx-alignment: center_left;
@@ -86,7 +86,7 @@
 
 .report_container Text{
     -fx-font-weight: bold;
-    -fx-fill: #132A13;
+    -fx-fill: #045c17;
 }
 
 .report_container Label {
@@ -98,7 +98,7 @@
 
 .report_container Button{
     -fx-pref-width:80;
-    -fx-background-color: #132A13;
+    -fx-background-color: #045c17;
     -fx-text-fill: #FFFFFF;
 
 
