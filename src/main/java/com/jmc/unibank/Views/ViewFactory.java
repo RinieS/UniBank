@@ -1,6 +1,8 @@
 package com.jmc.unibank.Views;
 
 import com.jmc.unibank.Controllers.Client.ClientController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -10,10 +12,19 @@ public class ViewFactory {
 
     //Client views
 
+    private final StringProperty clientSelectedMenuItem;
     private AnchorPane dashboardView;
+    private AnchorPane transactionsView;
+
+    private AnchorPane accountsView;
+
 
     public ViewFactory(){
+        this.clientSelectedMenuItem = new SimpleStringProperty("");
+    }
 
+    public StringProperty getClientSelectedMenuItem() {
+        return clientSelectedMenuItem;
     }
 
     public AnchorPane getDashboardView(){
@@ -26,6 +37,32 @@ public class ViewFactory {
             }
         }
         return dashboardView;
+    }
+
+    public AnchorPane getTransactionsView() {
+
+        if (transactionsView == null){
+            try{
+                transactionsView = new FXMLLoader(getClass().getResource("/Fxml/Client/Transactions.fxml")).load();
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return transactionsView;
+    }
+
+    public AnchorPane getAccountsView() {
+
+        if (accountsView == null){
+            try{
+                accountsView = new FXMLLoader(getClass().getResource("/Fxml/Client/Accounts.fxml")).load();
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return accountsView;
     }
 
     public void showLoginWindow(){
@@ -56,5 +93,11 @@ public class ViewFactory {
         stage.setScene(scene);
         stage.setTitle("Uni Bank");
         stage.show();
+    }
+
+    public void closeStage(Stage stage){
+        stage.close();
+
+
     }
 }

@@ -44,27 +44,25 @@
          <Text layoutX="14.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" />
       </AnchorPane>
    </HBox>
-   <VBox layoutX="722.0" layoutY="127.0" prefHeight="180.0" prefWidth="210.0" styleClass="summary_view"
-         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+   <VBox layoutX="722.0" layoutY="127.0" prefHeight="180.0" prefWidth="210.0" styleClass="summary_view" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="acc_summary_container">
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Income"/>
-         <Label fx:id="income_lbl" styleClass="income_amount" text="+$4000.00"/>
-         <Line endX="160.0"/>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses"/>
-         <Label fx:id="expense_lbl" styleClass="expense_amount" text="-1500.00"/>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Income" />
+         <Label fx:id="income_lbl" styleClass="income_amount" text="+$4000.00" />
+         <Line endX="160.0" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses" />
+         <Label fx:id="expense_lbl" styleClass="expense_amount" text="-1500.00" />
       </VBox>
    </VBox>
    <Text layoutX="26.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Latest Transactions" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="340.0" />
    <Text layoutX="750.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Send Money" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="340.0" />
    <ListView fx:id="transaction_listview" layoutX="45.0" layoutY="377.0" prefHeight="365.0" prefWidth="570.0" styleClass="transaction_listview" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" />
-   <VBox layoutX="640.0" layoutY="396.0" prefHeight="366.0" prefWidth="240.0" styleClass="new_trans_container"
-         AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <Label text="Payee Address"/>
-      <TextField fx:id="payee_fld"/>
-      <Label text="Amount in $:"/>
-      <TextField fx:id="amount_fld"/>
-      <Label text="Message:(Optional)"/>
-      <TextArea fx:id="message_fld" prefHeight="70.0" prefWidth="200.0"/>
-      <Button fx:id="send_money_btn" mnemonicParsing="false" text="Send Money"/>
+   <VBox layoutX="640.0" layoutY="396.0" prefHeight="366.0" prefWidth="240.0" styleClass="new_trans_container" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <Label text="Payee Address" />
+      <TextField fx:id="payee_fld" />
+      <Label text="Amount in $:" />
+      <TextField fx:id="amount_fld" />
+      <Label text="Message:(Optional)" />
+      <TextArea fx:id="message_fld" prefHeight="70.0" prefWidth="200.0" />
+      <Button fx:id="send_money_btn" mnemonicParsing="false" text="Send Money" />
    </VBox>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package com.jmc.unibank.Controllers.Client;
 
+import com.jmc.unibank.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -16,6 +17,28 @@ public class ClientMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addListeners();
+    }
+
+    private void addListeners(){
+        dashboard_btn.setOnAction(actionEvent -> onDashboard());
+        transaction_btn.setOnAction(actionEvent -> onTransactions());
+        accounts_btn.setOnAction(actionEvent -> onAccounts());
+
+    }
+
+    private void onTransactions() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
+    }
+
+    private void onDashboard() {
+
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Dashboard");
+    }
+
+    private void onAccounts(){
+
+    Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Accounts");
 
     }
 }
