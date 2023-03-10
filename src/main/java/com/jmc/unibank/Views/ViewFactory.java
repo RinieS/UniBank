@@ -1,5 +1,6 @@
 package com.jmc.unibank.Views;
 
+import com.jmc.unibank.Controllers.Admin.AdminController;
 import com.jmc.unibank.Controllers.Client.ClientController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -18,9 +19,15 @@ public class ViewFactory {
 
     private AnchorPane accountsView;
 
+    //admin views
+
+    private AnchorPane createClientView;
+    private final StringProperty adminSelectedMenuItem;
 
     public ViewFactory(){
+
         this.clientSelectedMenuItem = new SimpleStringProperty("");
+        this.adminSelectedMenuItem = new SimpleStringProperty("");
     }
 
     public StringProperty getClientSelectedMenuItem() {
@@ -65,10 +72,7 @@ public class ViewFactory {
         return accountsView;
     }
 
-    public void showLoginWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
-        createStage(loader);
-    }
+
 
     public void showClientWindow(){
 
@@ -76,6 +80,42 @@ public class ViewFactory {
         ClientController clientController = new ClientController();
         loader.setController(clientController);
 
+        createStage(loader);
+    }
+
+/*
+*Admin views  sections
+*
+* */
+
+    public StringProperty getAdminSelectedMenuItem(){
+        return adminSelectedMenuItem;
+    }
+
+    public AnchorPane getCreateClientView() {
+
+        if(createClientView == null){
+            try{
+                createClientView = new FXMLLoader(getClass().getResource("Fxml/Admin/CreateClient.fxml")).load();
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return createClientView;
+    }
+
+    public void showAdminWindow(){
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
+        AdminController adminController = new AdminController();
+        loader.setController(adminController);
+
+        createStage(loader);
+    }
+
+    public void showLoginWindow(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
         createStage(loader);
     }
 
