@@ -1,6 +1,7 @@
 package com.jmc.unibank.Controllers.Admin;
 
 import com.jmc.unibank.Models.Model;
+import com.jmc.unibank.Views.AdminMenuOptions;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -23,6 +24,6 @@ public class AdminMenuController implements Initializable {
 
     private void onCreateClient(){
 
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set("CreateClient");
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CREATE_CLIENT);
     }
 }

@@ -1,6 +1,8 @@
 package com.jmc.unibank.Controllers;
 
 import com.jmc.unibank.Models.Model;
+import com.jmc.unibank.Views.AccountType;
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -12,7 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    public ChoiceBox acct_selector;
+    public ChoiceBox <AccountType> acct_selector;
     public Label payee_address_lbl;
     public TextField payee_address_fld;
     public TextField password_fld;
@@ -21,6 +23,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        acct_selector.setItems(FXCollections.observableArrayList(AccountType.CLIENT, AccountType.ADMIN));
+        acct_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
+        acct_selector.valueProperty().addListener(observable -> Model.getInstance().getViewFactory().setLoginAccountType(acct_selector.getValue()));
         login_btn.setOnAction(actionEvent -> onLogin());
     }
 
@@ -29,6 +34,11 @@ public class LoginController implements Initializable {
 
         Stage stage = (Stage)error_lbl.getScene().getWindow();
         Model.getInstance().getViewFactory().closeStage(stage);
-        Model.getInstance().getViewFactory().showClientWindow();
+        if(Model.getInstance().getViewFactory().getLoginAccountType() == AccountType.CLIENT){
+            Model.getInstance().getViewFactory().showClientWindow();
+        }
+        else{
+            Model.getInstance().getViewFactory().showAdminWindow();
+        }
     }
 }
