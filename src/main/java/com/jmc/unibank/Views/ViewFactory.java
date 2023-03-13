@@ -24,6 +24,10 @@ public class ViewFactory {
 
     private AnchorPane createClientView;
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
+    private AnchorPane clientsView;
+    private AnchorPane depositView;
+
+
 
     public ViewFactory(){
         this.loginAccountType = AccountType.CLIENT;
@@ -105,7 +109,7 @@ public class ViewFactory {
 
         if(createClientView == null){
             try{
-                createClientView = new FXMLLoader(getClass().getResource("Fxml/Admin/CreateClient.fxml")).load();
+                createClientView = new FXMLLoader(getClass().getResource("/Fxml/Admin/CreateClient.fxml")).load();
             }
             catch (Exception ex){
                 ex.printStackTrace();
@@ -114,6 +118,29 @@ public class ViewFactory {
         return createClientView;
     }
 
+    public AnchorPane getClientsView(){
+        if(clientsView == null){
+            try{
+                clientsView = new FXMLLoader(getClass().getResource("/Fxml/Admin/Clients.fxml")).load();
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return clientsView;
+    }
+
+    public AnchorPane getDepositView(){
+        if(depositView == null){
+            try{
+                depositView = new FXMLLoader(getClass().getResource("/Fxml/Admin/Deposit.fxml")).load();
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return depositView;
+    }
     public void showAdminWindow(){
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
