@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jmc.unibank.Controllers.LoginController">
     <VBox layoutX="1.0" prefHeight="400.0" prefWidth="200.0" styleClass="login_logo_container" stylesheets="@../Styles/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <FontAwesomeIconView fill="#e8ebd3" glyphName="BANK" selectionEnd="0" selectionFill="#514c4c" selectionStart="0" size="30" styleClass="login_logo_container" />
@@ -17,11 +18,11 @@
     <VBox layoutX="236.0" layoutY="21.0" prefHeight="350.0" prefWidth="350.0" styleClass="login_form_container" stylesheets="@../Styles/login.css" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <Label id="choice-prompt-text" text="Choose Your Account Type" />
         <ChoiceBox fx:id="acct_selector" prefWidth="90.0" styleClass="account_selector" />
-        <Label fx:id="payee_address_lbl" text="Payee Addres:s" />
+        <Label fx:id="payee_address_lbl" text="Payee Address:" />
         <TextField fx:id="payee_address_fld" styleClass="input_field" />
         <Label text="Password:" />
-        <TextField fx:id="password_fld" styleClass="input_field" />
+        <PasswordField fx:id="password_fld" styleClass="input_field" />
         <Button fx:id="login_btn" mnemonicParsing="false" text="Login" />
-        <Label fx:id="error_lbl" prefHeight="17.0" prefWidth="34.0" styleClass="error_lbl"  />
+        <Label fx:id="error_lbl"  styleClass="error_lbl"  />
     </VBox>
 </AnchorPane>

@@ -25,7 +25,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         acct_selector.setItems(FXCollections.observableArrayList(AccountType.CLIENT, AccountType.ADMIN));
         acct_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
-        acct_selector.valueProperty().addListener(observable -> Model.getInstance().getViewFactory().setLoginAccountType(acct_selector.getValue()));
+        acct_selector.valueProperty().addListener(observable ->setAcc_selector() );
         login_btn.setOnAction(actionEvent -> onLogin());
     }
 
@@ -33,12 +33,47 @@ public class LoginController implements Initializable {
     private void onLogin(){
 
         Stage stage = (Stage)error_lbl.getScene().getWindow();
-        Model.getInstance().getViewFactory().closeStage(stage);
+
         if(Model.getInstance().getViewFactory().getLoginAccountType() == AccountType.CLIENT){
-            Model.getInstance().getViewFactory().showClientWindow();
+            //evaluate login credentials
+            Model.getInstance().evaluateClientCredentials(payee_address_fld.getText(), password_fld.getText());
+            if(Model.getInstance().getClientLoginSuccessFlag()){
+                Model.getInstance().getViewFactory().showClientWindow();
+
+                //close the login stage
+                Model.getInstance().getViewFactory().closeStage(stage);
+            }
+            else{
+                payee_address_fld.setText("");
+                password_fld.setText("");
+                error_lbl.setText("Invalid username or password");
+            }
+        }
+
+        else{
+            //evaluate admin login creds
+            Model.getInstance().evaluateAdminCredentials(payee_address_fld.getText(), password_fld.getText());
+            if(Model.getInstance().getAdminLoginSuccessFlag()){
+                Model.getInstance().getViewFactory().showAdminWindow();
+                //close the login stage
+                Model.getInstance().getViewFactory().closeStage(stage);
+            }
+            else{
+                payee_address_fld.setText("");
+                password_fld.setText("");
+                error_lbl.setText("Invalid username or password");
+
+            }
+        }
+    }
+
+    private void setAcc_selector() {
+        Model.getInstance().getViewFactory().setLoginAccountType(acct_selector.getValue());
+        if(acct_selector.getValue() == AccountType.ADMIN){
+            payee_address_lbl.setText("Username:");
         }
         else{
-            Model.getInstance().getViewFactory().showAdminWindow();
+            payee_address_lbl.setText("Payee Address:");
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.jmc.unibank.Models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseDriver {
 
@@ -18,6 +16,40 @@ public class DatabaseDriver {
         }
     }
 
+    /*
+    Client section
+    **/
+
+    public ResultSet getClientData(String pAddress, String password){
+        Statement statement;
+        ResultSet rs = null;
+         try{
+             statement = this.connection.createStatement();
+             rs = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress= '"+pAddress+"' AND Password= '"+password+"';");
+         }
+         catch (SQLException ex){
+             ex.printStackTrace();
+         }
+
+         return rs;
+    }
 
 
+    /*
+    admin section
+    **/
+
+    public ResultSet getAdminData (String username, String password){
+        Statement statement;
+        ResultSet rs = null;
+
+        try{
+            statement = this.connection.createStatement();
+            rs = statement.executeQuery("SELECT * FROM Admins WHERE Username= '"+username+"'AND Password= '"+password+"'; ");
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return rs;
+    }
 }
