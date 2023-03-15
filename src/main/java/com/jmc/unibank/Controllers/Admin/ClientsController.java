@@ -1,5 +1,7 @@
 package com.jmc.unibank.Controllers.Admin;
 
+import com.jmc.unibank.Models.Model;
+import com.jmc.unibank.Views.ClientCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
@@ -11,6 +13,16 @@ public class ClientsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initData();
+        clients_listview.setItems(Model.getInstance().getClients());
+        clients_listview.setCellFactory(e -> new ClientCellFactory());
 
+    }
+
+
+    private void initData (){
+        if(Model.getInstance().getClients().isEmpty()){
+            Model.getInstance().setClients();
+        }
     }
 }

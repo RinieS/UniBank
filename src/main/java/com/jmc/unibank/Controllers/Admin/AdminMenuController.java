@@ -4,6 +4,7 @@ import com.jmc.unibank.Models.Model;
 import com.jmc.unibank.Views.AdminMenuOptions;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ public class AdminMenuController implements Initializable {
         create_client_btn.setOnAction(actionEvent -> onCreateClient());
         clients_btn.setOnAction(actionEvent -> onClients());
         deposit_btn.setOnAction(actionEvent -> onDeposit());
+        logout_btn.setOnAction(actionEvent -> onLogout());
 
     }
 
@@ -40,5 +42,16 @@ public class AdminMenuController implements Initializable {
     private void onDeposit(){
 
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.DEPOSIT);
+    }
+    private void onLogout(){
+        //get stage
+        Stage stage = (Stage) clients_btn.getScene().getWindow();
+        //close the admin window
+        Model.getInstance().getViewFactory().closeStage(stage);
+        //display login window
+        Model.getInstance().getViewFactory().showLoginWindow();
+        //set client login flag to false
+        Model.getInstance().setAdminLoginSuccessFlag(false);
+
     }
 }
