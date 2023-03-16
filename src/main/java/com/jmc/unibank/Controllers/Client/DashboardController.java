@@ -1,10 +1,14 @@
 package com.jmc.unibank.Controllers.Client;
 
+import com.jmc.unibank.Models.Model;
+import com.jmc.unibank.Views.TransactionCellFactory;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -24,6 +28,26 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bindData();
+        initLatestTransactionsList();
+        transaction_listview.setItems(Model.getInstance().getLatestTransactions());
+        transaction_listview.setCellFactory(e -> new TransactionCellFactory());
+    }
+
+    private void bindData(){
+        user_name.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getClient().firstNameProperty()));
+        login_date.setText("Today, "+ LocalDate.now());
+        checking_balance.textProperty().bind(Model.getInstance().getClient().chAccountProperty().get().balanceProperty().asString());
+        checking_acc_num.textProperty().bind(Model.getInstance().getClient().chAccountProperty().get().accountNumberProperty());
+        savings_bal.textProperty().bind(Model.getInstance().getClient().sAccountProperty().get().balanceProperty().asString());
+        savings_acc_num.textProperty().bind(Model.getInstance().getClient().sAccountProperty().get().accountNumberProperty());
+    }
+
+    private void initLatestTransactionsList(){
+
+        if(Model.getInstance().getLatestTransactions().isEmpty()){
+            Model.getInstance().setLatestTransactions();
+        }
 
     }
 }

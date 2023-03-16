@@ -20,6 +20,8 @@ public class Model {
 
     private final Client client;
     private boolean clientLoginSuccessFlag;
+    private final ObservableList<Transaction> latestTransactions;
+    private final ObservableList<Transaction> allTransactions;
 
     //admin data section
 
@@ -37,6 +39,8 @@ public class Model {
         //admin data section
         this.adminLoginSuccessFlag = false;
         this.clients = FXCollections.observableArrayList();
+        this.latestTransactions = FXCollections.observableArrayList();
+        this.allTransactions = FXCollections.observableArrayList();
 
 
     }
@@ -96,6 +100,44 @@ public class Model {
         catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    private void prepareTransactions(ObservableList<Transaction> transactions, int limit){
+        ResultSet rs = dbDriver.getTransactions(this.client.payeeAddressProperty().get(), limit);
+
+        try{
+            while(rs.next()){
+                String sender = rs.getString("Sender");
+                String receiver = rs.getString("Receiver");
+                double amount = rs.getDouble("Amount");
+                String[]dateParts = rs.getString("Date").split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                String message = rs.getString("Message");
+                transactions.add(new Transaction(sender, receiver, amount, date, message));
+
+
+
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void setLatestTransactions(){
+        prepareTransactions(this.latestTransactions, 4);
+    }
+
+    public ObservableList<Transaction> getLatestTransactions(){
+        return latestTransactions;
+    }
+
+    // -1 limit will return all transactions
+    public void setAllTransactions(){
+        prepareTransactions(this.allTransactions, -1);
+    }
+
+    public ObservableList<Transaction> getAllTransactions() {
+        return allTransactions;
     }
 
     /*
