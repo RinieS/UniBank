@@ -1,2 +1,2 @@
 # UniBank
-JavaFx udemy course final project - banking system 
+JavaFx udemy course final project - bank CRM 
