@@ -47,6 +47,68 @@ public class DatabaseDriver {
         return rs;
     }
 
+    //method returns savings account balance
+    public double getSavingsAccountsBalance (String pAddress){
+        Statement statement;
+        ResultSet rs;
+        double balance=0;
+
+        try{
+            statement = this.connection.createStatement();
+            rs = statement.executeQuery("SELECT * FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
+            balance = rs.getDouble("Balance");
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return balance;
+    }
+
+//method to add/subtract from acct balance
+    public void updateBalance(String pAddress, double amount, String operation){
+        Statement statement;
+        ResultSet rs;
+
+        try{
+            statement = this.connection.createStatement();
+            rs = statement.executeQuery("SELECT * FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
+            double newBal;
+           if(operation.equals("ADD")){
+                newBal = rs.getDouble("Balance")+ amount;
+               statement.executeUpdate("UPDATE SavingsAccounts SET Balance= "+newBal+" WHERE Owner='"+pAddress+"';");
+           } else {
+               if(rs.getDouble("Balance") >= amount){
+                   newBal = rs.getDouble("Balance")-amount;
+                   statement.executeUpdate("UPDATE SavingsAccounts SET Balance= "+newBal+" WHERE Owner='"+pAddress+"';");
+
+               }
+           }
+
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    //creates and records new Transaction
+
+    public void newTransaction(String sender, String receiver, double amount, String message){
+        Statement statement;
+
+        try{
+            statement = this.connection.createStatement();
+            LocalDate date = LocalDate.now();
+            statement.executeUpdate("INSERT INTO "+
+                    "Transactions(Sender, Receiver, Amount, Date, Message)" +
+                    "VALUES ('"+sender+"', '"+receiver+"', "+amount+", '"+message+"');");
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
 
     /*
     *admin section
